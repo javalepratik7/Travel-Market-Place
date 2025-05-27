@@ -80,7 +80,9 @@ schema.static("matchPassword",
         const userSalt=user.salt
         const userPassword=user.password
 
-        const hashedPassword=createHmac("sha256",userSalt).update(password).digest("hex")
+        const hashedPassword = createHmac("sha256", salt)
+          .update(thisUser.password)
+          .digest("hex");
         console.log("here comes false",user,userSalt,userPassword,hashedPassword)
 
         if(userPassword !==hashedPassword){
