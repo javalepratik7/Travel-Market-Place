@@ -20,6 +20,7 @@ async function login(req, res) {
 
 
 async function signin(req, res) {
+    console.log(req.body)
     const { name, email, password, address, role, companyName, pincode, city, phoneNumber,otp } = req.body
     const data = await User.find({ email })
     if (data[0] ) {
