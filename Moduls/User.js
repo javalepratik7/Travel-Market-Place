@@ -57,10 +57,16 @@ schema.pre("save", function (next) {
     if (!thisUser.isModified("password")) {
         return next(); // ✅ important
     }
-    const salt = randomBytes(16).toString("hex"); // ✅ fix encoding
-    console.log("working")
-    const hashedPassword = createHmac("sha256", salt).update(thisUser.password).digest("hex");
+     if (!thisUser.password || typeof thisUser.password !== "string") {
+    return next(new Error("Password is missing or invalid"));
+  }
 
+  const salt = randomBytes(16).toString("hex");
+  const hashedPassword = createHmac("sha256", salt)
+    .update(thisUser.password)
+    .digest("hex");
+
+    console.log("working")
     thisUser.salt = salt;
     thisUser.password = hashedPassword;
     next();
