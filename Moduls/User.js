@@ -77,11 +77,11 @@ schema.static("matchPassword",
     async function (email ,password) {
         const user=await this.findOne({email})
         if (!user) {return false }
-        console.log("here comes false")
         const userSalt=user.salt
         const userPassword=user.password
 
         const hashedPassword=createHmac("sha256",userSalt).update(password).digest("hex")
+        console.log("here comes false",user,userSalt,userPassword,hashedPassword)
 
         if(userPassword !==hashedPassword){
             return false
