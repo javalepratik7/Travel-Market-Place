@@ -38,7 +38,7 @@ async function signin(req, res) {
 
 
 async function sendOtp(req,res) {
-    const {email}=req.email
+    const email=req.email
     console.log(email)
     const userInfo=await User.find({email})
 
