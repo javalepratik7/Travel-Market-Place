@@ -51,21 +51,23 @@ const schema=new mongoose.Schema({
     }
 })
 
-schema.pre("save",function (next) {
-    
-    const thisUser=this
+schema.pre("save", function (next) {
+    const thisUser = this;
+
     if (!thisUser.isModified("password")) {
-        return
+        return next(); // ✅ important
     }
-    
-    const salt=randomBytes(16).toString()
-    const hashedPassword=createHmac("sha256",salt).update(thisUser.password).digest("hex")
-    
-    // console.log("pre is calling",salt,hashedPassword,this);
-    this.salt=salt
-    this.password=hashedPassword
-    next()
-})
+
+    const salt = randomBytes(16).toString("hex"); // ✅ fix encoding
+    const hashedPassword = createHmac("sha256", salt)
+        .update(thisUser.password)
+        .digest("hex");
+
+    thisUser.salt = salt;
+    thisUser.password = hashedPassword;
+    next();
+});
+
 
 schema.static("matchPassword",
     async function (email ,password) {
