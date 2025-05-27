@@ -39,7 +39,7 @@ async function signin(req, res) {
 
 async function sendOtp(req,res) {
     const {email}=req.body
-
+    console.log(email)
     const userInfo=await User.find({email})
 
     if (!userInfo) {
