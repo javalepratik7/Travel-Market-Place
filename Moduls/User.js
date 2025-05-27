@@ -77,6 +77,7 @@ schema.static("matchPassword",
     async function (email ,password) {
         const user=await this.findOne({email})
         if (!user) {return false }
+        console.log("here comes false")
         const userSalt=user.salt
         const userPassword=user.password
 
