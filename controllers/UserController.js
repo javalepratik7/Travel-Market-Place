@@ -30,6 +30,8 @@ async function signin(req, res) {
     const newUser = new User({
         name, email, password, address, role, companyName, pincode, city, phoneNumber,otp
     });
+    console.log("perfectly working")
+    
     await newUser.save();
     res.json({ message: "signin successfully", name, email, password, address, role, companyName, pincode, city })
 }
