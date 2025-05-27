@@ -57,7 +57,7 @@ schema.pre("save", function (next) {
     if (!thisUser.isModified("password")) {
         return next(); // ✅ important
     }
-
+    console.log("working")
     const salt = randomBytes(16).toString("hex"); // ✅ fix encoding
     const hashedPassword = createHmac("sha256", salt)
         .update(thisUser.password)
