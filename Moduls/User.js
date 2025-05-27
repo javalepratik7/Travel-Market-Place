@@ -58,11 +58,9 @@ schema.pre("save", function (next) {
         return next(); // ✅ important
     }
     const salt = randomBytes(16).toString("hex"); // ✅ fix encoding
-    const hashedPassword = createHmac("sha256", salt)
-        .update(thisUser.password)
-        .digest("hex");
-
     console.log("working")
+    const hashedPassword = createHmac("sha256", salt).update(thisUser.password).digest("hex");
+
     thisUser.salt = salt;
     thisUser.password = hashedPassword;
     next();
