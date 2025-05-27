@@ -7,7 +7,7 @@ const {onlyLogin}=require("../Middlewares/middleware")
 router.post("/signin",signin)
 router.post("/login",login)
 router.post("/forgetPassword",forgetPassword)
-router.post("/sendOtp",sendOtp)
+router.post("/sendOtp",onlyLogin,sendOtp)
 router.post("/profile",onlyLogin,profile)
 
 
