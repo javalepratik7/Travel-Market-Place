@@ -17,15 +17,15 @@ function createToken(user){
 }
 
 function verifyToken(token) {
-    // console.log("comming to verify");
+    console.log("comming to verify");
     let value;
     try {
         value =jwt.verify(token,secretKey)
-        // console.log(value);
+        console.log(value);
         const email=value.email;
         
     } catch (error) {
-        console.log(error);
+        console.log("error occures du to ",error);
     }
     return value
 }
