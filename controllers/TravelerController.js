@@ -99,7 +99,7 @@ async function applyTour(req, res) {
         console.log(info.messageId);
 
 
-        res.status(200).redirect('http://localhost:5173');
+        res.status(200).redirect('https://travel-market-place-frontend-1.onrender.com/');
 
     } catch (error) {
         res.status(500).json({ message: "server error ", error, ok: error.message })
