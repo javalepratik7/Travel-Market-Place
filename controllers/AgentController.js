@@ -12,7 +12,7 @@ async function tour(req, res) {
     console.log("file is ", req.body);
 
     // uploding file on cloud
-    const par = "images/" + file.originalname
+    const par = "Services/" + file.originalname
 
     try {
         var responce = await cloudinary.uploader.upload(par, { resource_type: "auto" })
