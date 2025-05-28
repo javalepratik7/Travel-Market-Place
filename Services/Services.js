@@ -20,6 +20,7 @@ function verifyToken(token) {
     console.log("comming to verify");
     let value;
     try {
+        console.log(value,token);
         value =jwt.verify(token,secretKey)
         console.log(value);
         const email=value.email;
